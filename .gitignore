@@ -1,0 +1,57 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Flask-related
+instance/
+*.db
+*.sqlite3
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Pytest cache
+.pytest_cache/
+
+# VSCode and JetBrains project settings
+.vscode/
+.idea/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# Logs and debug
+*.log
+
+# MyPy and other tooling
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Build and dist
+build/
+dist/
+*.egg-info/
+
+# Node (if applicable)
+node_modules/
+
+# Swagger cache
+*.swagger.json
+*.openapi.json
