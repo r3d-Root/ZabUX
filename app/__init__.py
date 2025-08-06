@@ -26,10 +26,10 @@ def create_app():
 
     
     # Register Blueprints
-    from .views.routes import main_bp
+    from .views.view_routes import views_bp
     from .api.zabUX_routes import zabbix_api_bp
 
-    app.register_blueprint(main_bp)
+    app.register_blueprint(views_bp)
     app.register_blueprint(zabbix_api_bp, url_prefix='/api')
 
     return app
