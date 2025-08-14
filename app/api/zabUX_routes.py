@@ -10,7 +10,7 @@ def status():
     Simple test message
     ---
     tags:
-        - ZabUX
+        - System
     security:
       - CustomHeader: []
         ApiKeyHeader: []

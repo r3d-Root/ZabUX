@@ -73,10 +73,12 @@ def create_app():
     from .views.view_routes import views_bp
     from .api.zabUX_routes import zabux_api_bp
     from .api.zabbix_routes import zabbix_api_bp
+    from app.api.netbox_routes import netbox_api_bp
 
     app.register_blueprint(views_bp)
     app.register_blueprint(zabux_api_bp, url_prefix='/api')
     app.register_blueprint(zabbix_api_bp, url_prefix='/api')
+    app.register_blueprint(netbox_api_bp, url_prefix="/api")
 
     return app
 
