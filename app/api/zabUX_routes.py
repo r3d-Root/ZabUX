@@ -1,8 +1,10 @@
 from flask import Blueprint, jsonify, current_app
+from app.api.security import secure_endpoint
 
 zabbix_api_bp = Blueprint('zabiix_api', __name__)
 
-@zabbix_api_bp.route('/status')
+@zabbix_api_bp.route('/status', methods=['GET', "OPTIONS"])
+@secure_endpoint()
 def status():
     """
     Simple test message

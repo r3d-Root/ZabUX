@@ -14,16 +14,60 @@ def create_app():
     configure_logging(app)
 
     # Swagger setup
-    Swagger(app, template={
+    swagger_template = {
         "swagger": "2.0",
+        "basePath": "/api",
         "info": {
             "title": "ZabUX API",
             "description": "Monitoring and Inventory Integration API",
             "version": "1.0"
         },
-        "basePath": "/api",  # All endpoints under /api
-    })
+        "securityDefinitions": {
+            "CustomHeader": {
+                "type": "apiKey",
+                "name": os.getenv("CUSTOM_AUTH_HEADER", "X-ZabUX-FE"),
+                "in": "header",
+                "description": "Required for all requests."
+            },
+            "ApiKeyHeader": {
+                "type": "apiKey",
+                "name": os.getenv("API_KEY_HEADER", "X-API-Key"),
+                "in": "header",
+                "description": "Only needed when your Origin is NOT on the allow-list."
+            }
+        },
+        "security": [
+            {"CustomHeader": []},                       # allowed-origin + custom header
+            {"CustomHeader": [], "ApiKeyHeader": []}    # not-allowed origin -> need both
+        ],
+        "tags": [{"name": "System", "description": "Status & utilities"}],
+    }
 
+    swagger_config = {
+        "headers": [],
+        "specs": [
+            {
+                "endpoint": "apispec_1",
+                "route": "/apispec_1.json",
+                "rule_filter": lambda rule: True,   # include all routes
+                "model_filter": lambda tag: True,
+            }
+        ],
+        "static_url_path": "/flasgger_static",
+        "swagger_ui": True,
+        "specs_route": "/apidocs/",
+    }
+
+    Swagger(app, template=swagger_template, config=swagger_config)
+
+    # API Security
+    allowed = [d.strip() for d in os.getenv("ALLOWED_DOMAINS", "").split(",") if d.strip()]
+    api_keys = [k.strip() for k in os.getenv("API_KEYS", "").split(",") if k.strip()]
+
+    app.config["ALLOWED_DOMAINS_SET"] = set(map(str.lower, allowed))
+    app.config["API_KEYS_LIST"] = api_keys
+    app.config["CUSTOM_AUTH_HEADER"] = os.getenv("CUSTOM_AUTH_HEADER", "X-RFP-Customer")
+    app.config["API_KEY_HEADER"] = os.getenv("API_KEY_HEADER", "X-API-Key")
     
     # Register Blueprints
     from .views.view_routes import views_bp
