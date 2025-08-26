@@ -1,0 +1,74 @@
+/* Sidebar container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 60px; /* collapsed width */
+  background-color: #212529; /* Bootstrap dark */
+  transition: width 0.3s ease;
+  z-index: 1050; /* keep above page content */
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+/* Expanded state on hover */
+.sidebar:hover {
+  width: 220px; /* expanded width */
+}
+
+/* App logo styled like other nav links */
+.sidebar .app-logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Hide ZabUX text when collapsed */
+.sidebar .app-logo .logo-text {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.sidebar:hover .app-logo .logo-text {
+  opacity: 1;
+}
+
+
+/* Nav links */
+.sidebar .nav-link {
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Icons inside nav links */
+.sidebar .nav-link i {
+  min-width: 24px;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* Hide text labels when collapsed */
+.sidebar .nav-link span {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar:hover .nav-link span {
+  opacity: 1;
+}
+
+/* Page content shifts with sidebar */
+.content {
+  margin-left: 60px; /* matches collapsed width */
+  padding: 0rem;
+}
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}ZabUX{% endblock %}</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Base (scoped) sidebar styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+
+  <!-- Page-specific styles -->
+  {% block style %}{% endblock %}
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+
+  <!-- Sidebar as a landmark nav -->
+  <nav class="sidebar" aria-label="Primary">
+    <div class="nav flex-column">
+      <a class="nav-link app-logo" href="{{ url_for('views.index') }}">
+        <i class="bi bi-hdd-stack"></i>
+        <span class="logo-text">ZabUX</span>
+      </a>
+      <a class="nav-link" href="{{ url_for('views.index') }}">
+        <i class="bi bi-house"></i><span> Home</span>
+      </a>
+      <a class="nav-link" href="/apidocs">
+        <i class="bi bi-journal-code"></i><span> API Docs</span>
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- Page Content -->
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Page-specific scripts -->
+  {% block script %}{% endblock %}
+</body>
+</html>

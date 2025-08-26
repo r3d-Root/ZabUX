@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ZabUX </title>
+{% extends "base.html" %}
+{% block title %}ZabUX – Map{% endblock %}
+
+{% block style %}
+  <!-- Leaflet + page-scoped styles -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+{% endblock %}
 
-  <div id="map"></div>
+{% block content %}
+  <div class="map-page">
+    <div id="map" role="region" aria-label="Network map"></div>
+  </div>
+{% endblock %}
 
+{% block script %}
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="{{ url_for('static', filename='js/map.js') }}"></script>
-</body>
-</html>
+{% endblock %}

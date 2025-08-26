@@ -1,0 +1,13 @@
+/* Map page (scoped) */
+.map-page #map {
+  /* Fill viewport height while respecting .content's default 1rem padding top+bottom */
+  height: calc(100vh - 0rem);
+  width: 100%;
+}
+
+/* Optional: tighten spacing on very small screens where the sidebar still collapses */
+@media (max-width: 576px) {
+  .map-page #map {
+    height: 100vh; /* mobile can use full height */
+  }
+}
